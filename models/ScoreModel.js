@@ -1,10 +1,10 @@
 'use strict';
-import Mongo from './MongoBase'
-let mongoose = require ("mongoose");
+import MongoBase from './MongoBase'
+import mongoose from 'mongoose';
 
-class Model extends Mongo {
-	constructor () {
-		super('db1');
+class Model extends MongoBase {
+	constructor (connect, option, debug) {
+		super(connect, option, debug);
 		const connection = this.getConnect();
 		const Schema = mongoose.Schema;
 
@@ -12,9 +12,9 @@ class Model extends Mongo {
 			name: String,
 			agen: Number
 		});
-
+		
 		schema.set('autoIndex', false);
-		this.schema = connection.model('testss', schema);
+		this.schema = connection.model('scores', schema);
 	}
 
 	getSchema () {
@@ -22,5 +22,5 @@ class Model extends Mongo {
 	}
 };
 
-module.exports = Model;
+// module.exports = Model;
 export default Model;
